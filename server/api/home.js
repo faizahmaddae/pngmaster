@@ -7,7 +7,11 @@ export default defineEventHandler(async (event) => {
     const query = getQuery(event)
 
     // Launch the browser and open a new blank page
-    const browser = await puppeteer.launch( { headless: "new" } );
+    const browser = await puppeteer.launch( {
+        // headless: "new",
+        headless: false,
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    } );
     const page = await browser.newPage();
 
     // Navigate the page to a URL
