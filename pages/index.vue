@@ -12,7 +12,7 @@
 
         <div class="suggest-items my-5">
             <h1 class="h3 center text-center">Transparent background png images for designers</h1>
-            <Gallery :items="data.list_ul_data" />
+            <!-- <Gallery :items="data.list_ul_data" /> -->
         </div>
 
     </div>
