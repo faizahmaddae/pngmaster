@@ -2,7 +2,7 @@
     <div>
         <SearchBox />
 
-        <p>faiz :- {{ data }}</p>
+        <h1>v1</h1>
 
         <div class="hotsearch py-4">
             <ul class="p-0 ul">

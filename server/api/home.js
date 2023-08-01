@@ -1,7 +1,5 @@
 import * as cheerio from 'cheerio';
-import puppeteer from 'puppeteer';
 import axios from 'axios';
-import { log } from 'console';
 
 
 export default defineEventHandler(async (event) => {
