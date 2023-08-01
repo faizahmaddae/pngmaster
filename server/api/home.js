@@ -17,7 +17,13 @@ export default defineEventHandler(async (event) => {
       };
 
     const bodyHTML = await axios.get('https://www.pngwing.com/', { headers });
-    const $ = cheerio.load(bodyHTML.data + "");
+
+    return {
+        statusCode: 200,
+        body:`${bodyHTML.statusText}!`,
+    };
+
+    const $ = cheerio.load(bodyHTML.data);
 
     // return {
     //     statusCode: 200,
