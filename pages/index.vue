@@ -2,6 +2,8 @@
     <div>
         <SearchBox />
 
+        {{ data }}
+
         <!-- <div class="hotsearch py-4">
             <ul class="p-0 ul">
                 <li v-for="(item, index) in data.body" :key="index" class="left">
