@@ -10,7 +10,6 @@ export default defineEventHandler(async (event) => {
     const query = getQuery(event)
 
     const bodyHTML = await axios.get('https://www.pngwing.com/');
-    console.log(bodyHTML.data);
     const $ = cheerio.load(bodyHTML.data);
 
     // find ul with id list_ul
