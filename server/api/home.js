@@ -1,25 +1,17 @@
 import * as cheerio from 'cheerio';
 import puppeteer from 'puppeteer';
+import axios from 'axios';
+import { log } from 'console';
+
 
 export default defineEventHandler(async (event) => {
 
     // const { name } = getQuery(event)
     const query = getQuery(event)
 
-    // Launch the browser and open a new blank page
-    const browser = await puppeteer.launch( {
-        // headless: "new",
-        headless: false,
-        args: ['--no-sandbox', '--disable-setuid-sandbox'],
-    } );
-    const page = await browser.newPage();
-
-    // Navigate the page to a URL
-    await page.goto(`https://www.pngwing.com/`);
-
-    let bodyHTML = await page.evaluate(() => document.body.innerHTML);
-    
-    const $ = cheerio.load(bodyHTML);
+    const bodyHTML = await axios.get('https://www.pngwing.com/');
+    console.log(bodyHTML.data);
+    const $ = cheerio.load(bodyHTML.data);
 
     // find ul with id list_ul
     const items = $('.hotsearch > ul').find('li');
@@ -76,10 +68,6 @@ export default defineEventHandler(async (event) => {
           list_ul_data.push(item);
   
       });
-
-    //   arr.push(list_ul_data);
-
-    await browser.close();
 
     return {
         statusCode: 200,
