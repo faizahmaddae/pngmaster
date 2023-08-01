@@ -4,17 +4,17 @@
 
         <p>faiz :- {{ data }}</p>
 
-        <!-- <div class="hotsearch py-4">
+        <div class="hotsearch py-4">
             <ul class="p-0 ul">
                 <li v-for="(item, index) in data.body" :key="index" class="left">
                     <a :href="`/search/?q=${getQueryString(item.ahref)}`">{{ item.atext }}</a>
                 </li>
             </ul>
-        </div> -->
+        </div>
 
         <div class="suggest-items my-5">
             <h1 class="h3 center text-center">Transparent background png images for designers</h1>
-            <!-- <Gallery :items="data.list_ul_data" /> -->
+            <Gallery :items="data.list_ul_data" />
         </div>
 
     </div>
