@@ -13,7 +13,9 @@ export default defineEventHandler(async (event) => {
     const query = getQuery(event)
 
     try {
-        const browser = await chromium.launch(); // Launch the Chromium browser
+        const browser = await chromium.launch(
+            { headless: true }
+        ); // Launch the Chromium browser
         const context = await browser.newContext(); // Create a new browser context
         const page = await context.newPage(); // Create a new page in the context
         // await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36');
