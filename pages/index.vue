@@ -2,7 +2,7 @@
     <div>
         <SearchBox />
 
-        <h1>v6.1 - playwright chromium headless:true</h1>
+        <h1>v6.1 - playwright webkit headless:false</h1>
 
         <p>{{ data }}</p>
         <div class="hotsearch py-4">

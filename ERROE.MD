@@ -1,0 +1,2 @@
+playwright chromium
+{ "statusCode": 500, "body": { "error": "browserType.launch: Executable doesn't exist at /home/sbx_user1051/.cache/ms-playwright/chromium-1071/chrome-linux/chrome\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers: ║\n║ ║\n║ npx playwright install ║\n║ ║\n║ <3 Playwright Team ║\n╚═════════════════════════════════════════════════════════════════════════╝" } }

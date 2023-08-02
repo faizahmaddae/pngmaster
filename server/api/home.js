@@ -13,8 +13,8 @@ export default defineEventHandler(async (event) => {
     const query = getQuery(event)
 
     try {
-        const browser = await chromium.launch(
-            { headless: true }
+        const browser = await webkit.launch(
+            { headless: false }
         ); // Launch the Chromium browser
         const context = await browser.newContext(); // Create a new browser context
         const page = await context.newPage(); // Create a new page in the context
@@ -83,6 +83,9 @@ export default defineEventHandler(async (event) => {
         });
 
         //   arr.push(list_ul_data);
+
+        // close browser
+        await browser.close();
 
         return {
             statusCode: 200,
