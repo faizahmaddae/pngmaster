@@ -13,13 +13,13 @@ export default defineEventHandler(async (event) => {
     const query = getQuery(event)
 
     try {
-        const browser = await chromium.launch(
+        const browser = await firefox.launch(
             { headless: true }
         ); // Launch the Chromium browser
         const context = await browser.newContext(
             { viewport: { width: 1920, height: 1080 },
             userAgent: 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
-            
+
         },
 
         ); // Create a new browser context
@@ -29,8 +29,8 @@ export default defineEventHandler(async (event) => {
         const url = 'https://www.pngwing.com/en/';
         await page.goto(url); // Navigate to the URL
 
-
-        const $ = cheerio.load(await page.content());
+        const content = await page.content();
+        const $ = cheerio.load(`${content}`);
 
         // find ul with id list_ul
         const items = $('.hotsearch > ul').find('li');
