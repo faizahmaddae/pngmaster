@@ -18,8 +18,8 @@ export default defineEventHandler(async (event) => {
           'Accept-Language': 'en-US,en;q=0.9,fa;q=0.8',
         //   'Connection': 'keep-alive',
         //   'Host': 'pngwing.com',
-        //   'Origin': 'https://pngwing.app',
-        //   'Referer': 'https://pngwing.app/',
+          'Origin': 'https://www.pngwing.com/',
+          'Referer': 'https://www.pngwing.com/',
           'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36',
         },
       })
