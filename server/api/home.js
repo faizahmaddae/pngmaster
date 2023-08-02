@@ -4,19 +4,23 @@ import axios from 'axios';
 import { chromium } from 'playwright';
 import { firefox } from 'playwright';
 import { log } from 'console';
+import { gotScraping } from 'got-scraping';
+
 
 export default defineEventHandler(async (event) => {
 
     // const { name } = getQuery(event)
     const query = getQuery(event)
 
-    const bodyHTML = await axios.get(`https://www.pngwing.com/`,{
-        headers: {
-            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36', 
-        },
-      })
+    const response = await gotScraping.get('https://www.pngwing.com/');
 
-    const $ = cheerio.load(bodyHTML.data);
+    // const bodyHTML = await axios.get(`https://www.pngwing.com/`, {
+    //     headers: {
+    //         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+    //     },
+    // })
+
+    const $ = cheerio.load(response.body);
 
     // find ul with id list_ul
     const items = $('.hotsearch > ul').find('li');
@@ -35,44 +39,44 @@ export default defineEventHandler(async (event) => {
             atext: atext,
         };
         arr.push(item);
-    
+
     });
 
 
-      // releated list_ul
-      const list_ul = $('#list_ul').find('li');
-      var list_ul_data = [];
-      // loop through the items
-      list_ul.each((i, el) => {
-  
-          const link = $(el).find('link[itemprop="contentUrl"]').attr('href');
-          const keywords = $(el).find('meta[itemprop="keywords"]').attr('content');
-          const figcaption = $(el).find('figcaption').text();
-          const thumbnail = $(el).find('a[itemprop="url"]').attr('src');
-          const permalink = $(el).find('a[itemprop="url"]').attr('href');
-          // https://www.pngwing.com/en/free-png-nueth
-          // https://www.pngwing.com/en/{slug}
-  
-          // get slug from permalink use regex
-          const slug = (permalink + "").replaceAll('https://www.pngwing.com/en/', '');
-  
-          // if link is empty, skip
-          if (!link) return;
-  
-          // create new object
-          const item = {
-              link: link,
-              thumbnail: thumbnail,
-              keywords: keywords,
-              figcaption: figcaption,
-              permalink: permalink,
-              slug: slug,
-              // slug: slug,
-          };
-  
-          list_ul_data.push(item);
-  
-      });
+    // releated list_ul
+    const list_ul = $('#list_ul').find('li');
+    var list_ul_data = [];
+    // loop through the items
+    list_ul.each((i, el) => {
+
+        const link = $(el).find('link[itemprop="contentUrl"]').attr('href');
+        const keywords = $(el).find('meta[itemprop="keywords"]').attr('content');
+        const figcaption = $(el).find('figcaption').text();
+        const thumbnail = $(el).find('a[itemprop="url"]').attr('src');
+        const permalink = $(el).find('a[itemprop="url"]').attr('href');
+        // https://www.pngwing.com/en/free-png-nueth
+        // https://www.pngwing.com/en/{slug}
+
+        // get slug from permalink use regex
+        const slug = (permalink + "").replaceAll('https://www.pngwing.com/en/', '');
+
+        // if link is empty, skip
+        if (!link) return;
+
+        // create new object
+        const item = {
+            link: link,
+            thumbnail: thumbnail,
+            keywords: keywords,
+            figcaption: figcaption,
+            permalink: permalink,
+            slug: slug,
+            // slug: slug,
+        };
+
+        list_ul_data.push(item);
+
+    });
 
     //   arr.push(list_ul_data);
 
