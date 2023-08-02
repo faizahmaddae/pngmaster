@@ -2,7 +2,7 @@
     <div>
         <SearchBox />
 
-        <h1>v3</h1>
+        <h1>v4</h1>
 
         <p>{{ data }}</p>
         <div class="hotsearch py-4">
