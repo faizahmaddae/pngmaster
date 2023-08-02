@@ -19,6 +19,8 @@
     "@nuxtjs/axios": "^5.13.6",
     "axios": "^1.4.0",
     "cheerio": "^1.0.0-rc.12",
+    "playwright": "^1.36.2",
+    "puppeteer": "^20.9.0",
     "url-parse": "^1.5.10"
   }
 }
