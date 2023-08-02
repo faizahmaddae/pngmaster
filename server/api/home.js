@@ -13,12 +13,16 @@ export default defineEventHandler(async (event) => {
     const query = getQuery(event)
 
     try {
-        const browser = await firefox.launch(
-            { headless: true }
+        const browser = await chromium.launch(
+            {
+                headless: true,
+                args: ['--no-sandbox', '--disable-setuid-sandbox'],
+
+            },
         ); // Launch the Chromium browser
         const context = await browser.newContext(
             { viewport: { width: 1920, height: 1080 },
-            userAgent: 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
+            // userAgent: 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
 
         },
 
