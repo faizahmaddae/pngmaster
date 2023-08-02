@@ -16,7 +16,13 @@ export default defineEventHandler(async (event) => {
         const browser = await chromium.launch(
             { headless: true }
         ); // Launch the Chromium browser
-        const context = await browser.newContext(); // Create a new browser context
+        const context = await browser.newContext(
+            { viewport: { width: 1920, height: 1080 },
+            userAgent: 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
+            
+        },
+
+        ); // Create a new browser context
         const page = await context.newPage(); // Create a new page in the context
         // await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36');
 
