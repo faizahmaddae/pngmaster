@@ -13,8 +13,8 @@ export default defineEventHandler(async (event) => {
     const query = getQuery(event)
 
     try {
-        const browser = await webkit.launch(
-            { headless: false }
+        const browser = await chromium.launch(
+            { headless: true }
         ); // Launch the Chromium browser
         const context = await browser.newContext(); // Create a new browser context
         const page = await context.newPage(); // Create a new page in the context
