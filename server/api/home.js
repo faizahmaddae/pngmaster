@@ -12,13 +12,24 @@ export default defineEventHandler(async (event) => {
     // const { name } = getQuery(event)
     const query = getQuery(event)
 
-    const response = await gotScraping.get('https://www.pngwing.com/');
 
-    // const bodyHTML = await axios.get(`https://www.pngwing.com/`, {
-    //     headers: {
-    //         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
-    //     },
-    // })
+    var mydata = [];
+
+    await gotScraping.get('https://www.pngwing.com/').then((response) => {
+        // console.log(response.body);
+
+        // load the response into cheerio
+
+        mydata = response.body;
+
+    });
+
+    return {
+        statusCode: 200,
+        body: mydata,
+    };
+
+
 
     const $ = cheerio.load(response.body);
 
